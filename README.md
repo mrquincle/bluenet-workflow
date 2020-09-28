@@ -12,8 +12,8 @@ By having an external workflow repository I do not bother anyone with my forgetf
 
 # Copyright
 
-Author: A.C. van Rossum
-Copyright: 2020
-License: LGPLv3, Apache License, MIT
+* Author: A.C. van Rossum
+* Copyright: 2020
+* License: LGPLv3, Apache License, MIT
 
 
