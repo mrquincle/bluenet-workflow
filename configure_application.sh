@@ -7,10 +7,3 @@ make -j8
 
 cd $board
 make -j8
-
-make write_application
-
-#make build_bootloader_settings
-make write_bootloader_settings
-
-make reset
