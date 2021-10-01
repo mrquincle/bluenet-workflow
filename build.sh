@@ -20,17 +20,17 @@ cd ../bluenet/build
 case $cmd in
 	1)
 		cmake .. -DBOARD_TARGET=$board -DCMAKE_BUILD_TYPE=Debug -DCONFIG_DIR=
-		make
+		make -j
 		;;
 	2)
 		cd $board
-		make
+		make -j
 		;;
 	3)
 		cmake .. -DBOARD_TARGET=$board -DCMAKE_BUILD_TYPE=Debug -DCONFIG_DIR=
-		make
+		make -j
 		cd $board
-		make
+		make -j
 		;;
 	*)
 		echo "Unknown option"
