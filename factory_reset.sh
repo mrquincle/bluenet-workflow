@@ -3,42 +3,29 @@
 board=${1:? "usage: $0 board" }
 
 cd ../bluenet/build
-cmake .. -DBOARD_TARGET=$board -DCMAKE_BUILD_TYPE=Debug -DCONFIG_DIR=
-
-make
-make depend
-
-cd $board
-make depend
-
-cd bootloader
-make depend
-
-cd ../..
-make -j8
-
-cd $board
-make -j8
-
-cd ..
-
-make erase
-make write_softdevice
-make read_softdevice_version
-
 cd $board
 
-make write_board_version
-make write_application
+echo "Setup Crownstone"
 
-cd bootloader
+echo "1. read out BLE address and write config file"
+echo "2. factory reset"
+echo "3. reset"
 
-make write_bootloader
-make write_bootloader_address
+echo -n  "Make your choice [1-3]: "
 
-cd ..
+read cmd
 
-#make build_bootloader_settings
-make write_bootloader_settings
-
-make reset
+case $cmd in
+	1)
+		make write_config
+		;;
+	2)
+		make factory_reset
+		;;
+	3)
+		make reset
+		;;
+	*)
+		echo "Unknown option"
+		;;
+esac

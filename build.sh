@@ -11,7 +11,7 @@ echo "1. cmake .. -DBOARD_TARGET=$board -DCMAKE_BUILD_TYPE=Debug -DCONFIG_DIR= &
 echo "2. cd $board && make (compiling the target)"
 echo "3. all of the above"
 
-echo -n  "Make your choice [1-4]: "
+echo -n  "Make your choice [1-3]: "
 
 read cmd
 
