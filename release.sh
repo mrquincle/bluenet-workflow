@@ -1,10 +1,38 @@
+#!/bin/sh
+
 board=${1:? "usage: $0 board" }
 
-cd ../build
+build_type=Release
 
-cd $board
+echo "Run the following commands"
 
-make generate_dfu_package_bootloader 
-make generate_dfu_package_application 
-make generate_dfu_package_all
-make install
+echo "1. cmake .. -DBOARD_TARGET=$board -DCMAKE_BUILD_TYPE=$build_type -DCONFIG_DIR= -DFACTORY_IMAGE=OFF && make (configuring in build)"
+echo "2. cd $board && make (compiling the target)"
+echo "3. all of the above"
+
+echo -n  "Make your choice [1-3]: "
+
+read cmd
+
+cd ../bluenet/build
+
+case $cmd in
+	1)
+		cmake .. -DBOARD_TARGET=$board -DCMAKE_BUILD_TYPE=$build_type -DCONFIG_DIR= -DFACTORY_IMAGE=OFF
+		make -j
+		;;
+	2)
+		cd $board
+		make -j
+		;;
+	3)
+		cmake .. -DBOARD_TARGET=$board -DCMAKE_BUILD_TYPE=$build_type -DCONFIG_DIR= -DFACTORY_IMAGE=OFF
+		make -j
+		cd $board
+		make -j
+		;;
+	*)
+		echo "Unknown option"
+		;;
+esac
+

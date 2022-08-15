@@ -2,12 +2,15 @@
 
 board=${1:? "usage: $0 board" }
 
-# By default use 8 cores
-export MAKEFLAGS='-j 8'
+build_type=Debug
+
+parallel_flag="-j"
+
+shift
 
 echo "Run the following commands"
 
-echo "1. cmake .. -DBOARD_TARGET=$board -DCMAKE_BUILD_TYPE=Debug -DCONFIG_DIR= && make (configuring in build)"
+echo "1. cmake .. -DBOARD_TARGET=$board -DCMAKE_BUILD_TYPE=$build_type -DCONFIG_DIR= -DFACTORY_IMAGE=OFF $@ && make (configuring in build)"
 echo "2. cd $board && make (compiling the target)"
 echo "3. all of the above"
 
@@ -19,18 +22,18 @@ cd ../bluenet/build
 
 case $cmd in
 	1)
-		cmake .. -DBOARD_TARGET=$board -DCMAKE_BUILD_TYPE=Debug -DCONFIG_DIR=
-		make -j
+		cmake .. -DBOARD_TARGET=$board -DCMAKE_BUILD_TYPE=$build_type -DCONFIG_DIR= -DFACTORY_IMAGE=OFF $@
+		make $parallel_flag
 		;;
 	2)
 		cd $board
-		make -j
+		make $parallel_flag
 		;;
 	3)
-		cmake .. -DBOARD_TARGET=$board -DCMAKE_BUILD_TYPE=Debug -DCONFIG_DIR=
-		make -j
+		cmake .. -DBOARD_TARGET=$board -DCMAKE_BUILD_TYPE=$build_type -DCONFIG_DIR= -DFACTORY_IMAGE=OFF $@
+		make $parallel_flag
 		cd $board
-		make -j
+		make $parallel_flag
 		;;
 	*)
 		echo "Unknown option"

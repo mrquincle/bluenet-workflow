@@ -49,7 +49,7 @@ memory_map() {
 
 publish() {
 	cs_log "We assume you have checked out the repository in docs/html again, but then the gh-pages branch"
-	cd ..
+	cd ../bluenet
 	if [ ! -d "docs/html" ]; then
 		cs_err "The docs/html directory does not exist."
 		exit
@@ -86,10 +86,10 @@ publish() {
 }
 
 case $option in
-	generate) 
+	generate)
 		generate
 	;;
-	memory_map) 
+	memory_map)
 		memory_map
 	;;
 	publish)

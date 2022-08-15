@@ -12,7 +12,9 @@ echo "2. make debug_server"
 echo "3. make debug_application"
 echo "4. make reset (optionally)"
 echo "5. make uart_binary_client (alternative for 1)"
-echo "6. make debug_bootloader (alternative for 3)"
+echo "6. make uart_raw_binary_client (alternative for 1)"
+echo "7. make debug_bootloader (alternative for 3)"
+echo "8. make extract_logs (required for 5 and 6)"
 
 echo -n  "Make your choice [1-6]: "
 
@@ -35,7 +37,13 @@ case $cmd in
 		make uart_binary_client
 		;;
 	6)
+		make uart_raw_binary_client
+		;;
+	7)
 		make debug_bootloader
+		;;
+	8)
+		make extract_logs
 		;;
 	*)
 		echo "Unknown option"
