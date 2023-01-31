@@ -12,7 +12,12 @@ source $workpath/source/scripts/_utils.sh
 generate() {
 	cs_info "Run doxygen with doxygen.config as configuration file"
 	cd $workpath
+#	doxygen -d markdown doxygen.config
+#	doxygen -d printtree doxygen.config
 	doxygen doxygen.config
+	echo
+	cs_info "Generate project version (adjust in doxygen.config if update is required): "
+	cat doxygen.config | grep ^PROJECT_NUMBER
 }
 
 view() {
